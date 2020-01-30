@@ -6,21 +6,38 @@
   <img src="assets/imgs/Logo-inicio.png" alt="logo">
 
   <form>
+    
     <ion-item>
       <ion-label floating> Email</ion-label> 
-      <ion-input type = "text"></ion-input>
+      <ion-input [(ngModel)]="creds.email" name = "email" type = "text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating> Password</ion-label> 
-      <ion-input type = "password"></ion-input>
+      <ion-input [(ngModel)]="creds.senha" name = "senha" type = "password"></ion-input>
+      
+    
+      
     </ion-item>
     
-    <button ion-button round block (click)="login()"> Login</button>
+   
+    
+    
 
+    
   </form>
+  <ion-content padding>
+    <p>
+  <button ion-button color="dark" clear >Forgot your password?</button>
+</p>
+<p>
+  <button ion-button round full (click) ="login()"> Login</button>
+</p>
+<p>
+    <button ion-button round full ion-button color="dark" clear >Create Account</button>
+  </p>
+  </ion-content>
   
-  
-  <a ion-router-link  (click)="login()">Create Account</a>
-  
+
+
 </ion-content>
