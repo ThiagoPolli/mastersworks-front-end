@@ -38,5 +38,8 @@ export class CategoriasPage {
     error => {});
     
   }
+  showProdutos(categoria_id){
+    this.navCtrl.push('ProdutosPage', {categoria_id : categoria_id});
+  }
 
 }
