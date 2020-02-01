@@ -45,6 +45,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             return Observable.throw(errorObj);
         }) as any;
     }
+    
+
 
     handle403(){
         this.storage.setLocalUser(null);
@@ -74,7 +76,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
             ]
         });
-        alert.present();
+         alert.present();
 
     }
 
