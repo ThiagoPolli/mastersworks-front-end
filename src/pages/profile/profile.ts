@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StorageService } from '../../services/storage.service';
 import { ClienteDTO } from '../../models/cliente.dto';
 import { ClienteService } from '../../services/domain/cliente.service';
@@ -19,21 +19,26 @@ export class ProfilePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
-    public clienteService: ClienteService) {
+    public clienteService: ClienteService,
+    public loadingCtrl: LoadingController ) {
   }
 
   ionViewDidLoad() {
-    let localUser = this.storage.getLocalUser();
-    if (localUser && localUser.email) {
-      this.clienteService.findByEmail(localUser.email)
+     let localUser = this.storage.getLocalUser();
+     let loader = this.presentLoading();
+     if (localUser && localUser.email) {
+       this.clienteService.findByEmail(localUser.email)      
       .subscribe(response => {
         this.cliente = response as ClienteDTO;
+        loader.dismiss();
         this.getImageIfExists();
       }, 
       error =>{
         if (error.status == 403){
           this.navCtrl.setRoot('HomePage');
+         
         }
+        loader.dismiss();
       });
      
    }
@@ -47,10 +52,15 @@ export class ProfilePage {
      this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
    },
    error => {});
- }
- 
-
-
+  }
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: "Please wait...",          
+      });
+    loader.present();
+    return loader;
+  }
 }
 
 

@@ -8,6 +8,12 @@
 </ion-header>
 
 <ion-content padding>
+  
+    <ion-refresher slot="fixed"(ionRefresh)="doRefresh($event)">
+      <ion-refresher-content  refreshingSpinner="circles"></ion-refresher-content>
+    </ion-refresher>
+  
+
  <ion-fab top right edge>
     <button navPush="CartPage" ion-fab mini><ion-icon name="cart"></ion-icon></button>
   </ion-fab>
@@ -20,4 +26,11 @@
       <p>{{item.preco | currency}}</p>
     </button>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinit($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
