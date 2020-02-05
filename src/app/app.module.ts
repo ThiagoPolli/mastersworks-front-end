@@ -16,6 +16,8 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { PedidoService } from '../services/domain/pedido.service';
+import { Camera } from '@ionic-native/camera';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PedidoService } from '../services/domain/pedido.service';
     ProdutoService,
     CategoriaService,
     CartService,
-    PedidoService
+    PedidoService,
+    Camera    
+    
   ]
 })
 export class AppModule {}
