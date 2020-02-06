@@ -17,6 +17,7 @@ import { ProdutoService } from '../services/domain/produto.service';
 import { CartService } from '../services/domain/cart.service';
 import { PedidoService } from '../services/domain/pedido.service';
 import { Camera } from '@ionic-native/camera';
+import { ImageUtilService } from '../services/image.util.service';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { Camera } from '@ionic-native/camera';
     CategoriaService,
     CartService,
     PedidoService,
-    Camera    
+    Camera,
+    ImageUtilService    
     
   ]
 })
