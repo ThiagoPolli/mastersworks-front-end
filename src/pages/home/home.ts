@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage} from 'ionic-angular';
+import { NavController, IonicPage, AlertController} from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthService } from '../../services/auth.service';
+import { NovaSenhaDTO } from '../../models/nova-senha.dto';
 
 @IonicPage()
 @Component({
@@ -11,6 +12,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomePage {
 
+
+  cred : NovaSenhaDTO = {
+    email: ""
+  };
+
+
   creds: CredenciaisDTO = {
     email: "",
     senha: ""
@@ -18,7 +25,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public menu: MenuController,
-    public auth: AuthService) {
+    public auth: AuthService,
+    public alertCtrl: AlertController) {
 
   }
   ionViewWillEnter() {
@@ -52,5 +60,16 @@ export class HomePage {
   signup() {
     this.navCtrl.push('SignupPage');
   }
- 
+
+  forgot(){
+    this.auth.newPassword(this.creds)
+    .subscribe(response => {
+      console.log(response.headers.get("Authorization"));
+
+    },
+    error => {
+
+    });
+  }
+  
 }

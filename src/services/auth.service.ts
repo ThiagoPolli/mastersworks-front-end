@@ -6,6 +6,7 @@ import { LocalUser } from "../models/local_user";
 import { StorageService } from "./storage.service";
 import { JwtHelper } from 'angular2-jwt';
 import { CartService } from "./domain/cart.service";
+import { NovaSenhaDTO } from "../models/nova-senha.dto";
 
 @Injectable()
 export class AuthService{
@@ -15,7 +16,7 @@ export class AuthService{
     constructor(
         public http: HttpClient, 
         public storage: StorageService,
-        public cartServece: CartService ) {
+        public cartServece: CartService) {
 
     }
 
@@ -54,5 +55,15 @@ export class AuthService{
                  responseType: 'text'
              });
     }
+    newPassword(cred: NovaSenhaDTO){
 
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/auth/forgot`,cred,
+             {
+                 observe:'response',
+                 responseType: 'text'
+             });
+
+            }
+   
 }

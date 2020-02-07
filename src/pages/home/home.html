@@ -19,7 +19,9 @@
   </form>
   <ion-content padding>
     <p>
-  <button ion-button color="dark" clear >Forgot your password?</button>
+      <ion-input [(ngModel)]="cred.email" name = "email" type = "text"></ion-input>
+  <button ion-button color="dark" clear (click) = "forgot()">Forgot your password?</button>
+ 
 </p>
 <p>
   <button ion-button round full (click) ="login()"> Login</button>
